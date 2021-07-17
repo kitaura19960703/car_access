@@ -1,0 +1,19 @@
+<div class='container'>
+ <div class='row'>
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+   <h1>会員情報</h1>
+   <table border="1">
+    <tr><th bgcolor="silver">氏名</th><td><%= @user.first_name + @user.last_name %></td></tr>
+    <tr><th bgcolor="silver">カナ</th><td><%= @user.first_name_kana + @user.last_name_kana %></td></tr>
+    <tr><th bgcolor="silver">年齢</th><td><%= @user.age %></td></tr>
+    <tr><th bgcolor="silver">出身</th><td><%= User.addresses.key(@user.first_address) %></td></tr>
+    <tr><th bgcolor="silver">現住所</th><td><%= User.addresses.key(@user.last_address) %></td></tr>
+    <tr><th bgcolor="silver">メールアドレス</th><td><%= @user.email %></td></tr>
+   </table>
+   <% if current_user == @user %>
+    <%= link_to "編集する", edit_user_path(@user), class: "fas fa-user-cog btn btn-success" %>
+   <% end %>
+  </div>
+ </div>
+</div>
+

@@ -1,0 +1,28 @@
+<div class='container px-5 px-sm-0'>
+ <div class='row'>
+  <div class='col-md-8 offset-md-1'>
+   <br>
+   <h2>Cars<%= link_to new_car_path do%><i class="fas fa-plus-circle ml-2"></i><% end %></h2>
+   <table class="table table-hover">
+    <thead>
+     <tr bgcolor="silver">
+      <th>ID</th>
+      <th>名前</th>
+      <th>ボディ</th>
+      <th>メーカー</th>
+     </tr>
+    </thead>
+    <tbody>
+     <% @cars.each do |user| %>
+      <tr>
+       <td><%= car.id %></td>
+       <td><%= link_to car.car_name, car_path(car.id) %></td>
+       <td><%= car.body_type %></td>
+       <td><%= car.maker %></td>
+      </tr>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</div>

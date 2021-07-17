@@ -1,0 +1,29 @@
+<div class='container'>
+ <div class='row'>
+  <div class="mx-auto">
+   <h1>会員情報編集</h1>
+   <% if @user.errors.any? %>
+  　<%= @uer.errors.count %>件のエラーが発生しました
+  　<% @user.errors.full_messages.each do |message| %>
+     <%= message %>
+  　<% end %>
+　 <% end %>
+   <%= form_with model: @user, url:user_path(@user) , local:true do |f| %>
+   <table>
+    <tr><th>氏名</th><td><%= f.text_field :first_name %></td><td><%= f.text_field :last_name %></td></tr>
+    <tr><th>フリガナ</th><td><%= f.text_field :first_name_kana %></td><td><%= f.text_field :larst_name_kana %></td></tr>
+    <tr><th>年齢</th><td><%= f.text_field :age %></td></tr>
+    <tr>
+     <th>出身</th><td><%= User.addresses.key(@user.first_address) %></td>
+     <th>現住所</th><td><%= f.select :last_address, User.addresses, {prompt: '選択してください'} %></td>
+    </tr>
+    <tr><th>e-mail</th><td><%= f.text_field :email %></td></tr>
+   </table>
+   <foot>
+    <%= f.submit "保存する", class: "btn btn-primary" %>
+    <%#= link_to "退会する" , public_customers_unsubscribe_path, class: "fas fa-user-cog btn btn-danger" %>
+   </foot>
+   <% end %>
+  </div>
+ </div>
+</div>

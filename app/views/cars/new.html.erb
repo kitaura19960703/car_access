@@ -1,0 +1,223 @@
+<div class='container'>
+  <div class='row'>
+   <div class="mx-auto">
+    <h2>New Car</h2>
+    <%= form_with model: @car, url:cars_path, method: :post, local:true, html:{name: 'car'} do |f| %>
+      <div class="d-flex justify-content-around">
+        <div><%= f.label :maker, 'メーカー' %></div>
+        <div><%= f.radio_button :maker, "TOYOTA", :onchange => "setOption(this);" %><%= f.label :maker, 'TOYOTA' %></div>
+        <div><%= f.radio_button :maker, "HONDA", :onchange => "setOption(this);" %><%= f.label :maker, "HONDA" %></div>
+        <div><%= f.radio_button :maker, "NISSAN", :onchange => "setOption(this);" %><%= f.label :maker, "NISSAN" %></div>
+        <div><%= f.radio_button :maker, "MAZDA", :onchange => "setOption(this);" %><%= f.label :maker, "MAZDA" %></div>
+        <div><%= f.radio_button :maker, 'other' %><%= f.label :maker, "その他", class: 'text-nowrap' %><%= f.text_field :other_maker, style: 'display:none'%></div>
+      </div>
+      <div class="d-flex justify-content-around">
+       <div><%= f.label :body_type, 'ボディタイプ' %></div>
+       <div><%= f.radio_button :body_type, "コンパクト", :onchange => "setOption(this);" %><%= f.label :body_type, 'コンパクト' %></div>
+       <div><%= f.radio_button :body_type, "ミニバン", :onchange => "setOption(this);" %><%= f.label :body_type, 'ミニバン' %></div>
+       <div><%= f.radio_button :body_type, "セダン", :onchange => "setOption(this);" %><%= f.label :body_type, 'セダン' %></div>
+       <div><%= f.radio_button :body_type, "スポーツ", :onchange => "setOption(this);" %><%= f.label :body_type, 'スポーツ' %></div>
+       <div><%= f.radio_button :body_type, "軽自動車", :onchange => "setOption(this);" %><%= f.label :body_type, '軽自動車' %></div>
+       <div><%= f.radio_button :body_type, 'other', :onchange => "setOption(this);" %><%= f.label :body_type, "その他" %><%= f.text_field :other_body_type, style: 'display:none'%></div>
+      </div>
+      <div>
+        <div><strong>名前</strong></div><select name="boxB" id="boxB"><option>選択してください</option></select><br>
+        <%= f.label :review, '説明' %><br><%= f.text_area :review, size: "80x5" %><br><%= f.submit '投稿',class: "btn btn-primary" %></div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+    <script type="text/javascript">
+     var TOYOTA = [
+      {value: "", label: "▼TOYOTA"},
+      {value: "1", label: "アクア"},{value: "2", label: "パッソ"},{value: "3", label: "ヤリス"},{value: "4", label: "ルーミー"},
+      {value: "5", label: "アルファード"},{value: "6", label: "ヴェルファイア"},{value: "7", label: "ヴォクシー"},{value: "8", label: "エクスファイア"},
+      {value: "9", label: "グランエース"},{value: "10", label: "シエンタ"},{value: "11", label: "ノア"},{value: "12", label: "ハイエース"},
+      {value: "13", label: "カムリ"},{value: "14", label: "カローラ"},{value: "15", label: "クラウン"},
+      {value: "16", label: "センチュリー"},{value: "17", label: "プリウス"},{value: "18", label: "MIRAI"},
+      {value: "19", label: "スープラ"},{value: "20", label: "86"},{value: "21", label: "ピクシス"},
+     ];
+     
+     var TOYOTA_Compact = [
+      {value: "", label: "▼TOYOTA"},
+      {value: "1", label: "アクア"},{value: "2", label: "パッソ"},{value: "3", label: "ヤリス"},{value: "4", label: "ルーミー"},
+     ];
+     
+     var TOYOTA_Minivan = [
+      {value: "", label: "▼TOYOTA"},
+      {value: "5", label: "アルファード"},{value: "6", label: "ヴェルファイア"},{value: "7", label: "ヴォクシー"},{value: "8", label: "エクスファイア"},
+      {value: "9", label: "グランエース"},{value: "10", label: "シエンタ"},{value: "11", label: "ノア"},{value: "12", label: "ハイエース"},
+     ];
+     
+     var TOYOTA_Sedan = [
+      {value: "", label: "▼TOYOTA"},
+      {value: "13", label: "カムリ"},{value: "14", label: "カローラ"},{value: "15", label: "クラウン"},
+      {value: "16", label: "センチュリー"},{value: "17", label: "プリウス"},{value: "18", label: "MIRAI"},
+     ];
+     
+     var TOYOTA_Sports = [{value: "", label: "▼TOYOTA"},{value: "19", label: "スープラ"},{value: "20", label: "86"},];
+     
+     var TOYOTA_K = [{value: "", label: "▼TOYOTA"},{value: "21", label: "ピクシス"},];
+     
+     var HONDA = [
+      {value: "", label: "▼HONDA"},
+      {value: "22", label: "シャトル"},{value: "23", label: "フィット"},
+      {value: "24", label: "オデッセイ"},{value: "25", label: "ステップワゴン"},{value: "26", label: "フリード"},
+      {value: "27", label: "NSX"},{value: "28", label: "シビック"},{value: "29", label: "CR-V"},{value: "30", label: "VEZEL"},
+      {value: "32", label: "クラリティ"},{value: "33", label: "レジェンド"},{value: "34", label: "アコード"},{value: "35", label: "インサイト"},
+      {value: "31", label: "S660"},{value: "36", label: "N-ONE"},{value: "37", label: "N-BOX"},{value: "38", label: "N-WGN"},{value: "39", label: "N-VAN"},
+     ];
+     
+     var HONDA_Compact = [{value: "", label: "▼HONDA"},{value: "22", label: "シャトル"},{value: "23", label: "フィット"},];
+     
+     var HONDA_Minivan = [
+      {value: "", label: "▼HONDA"},{value: "24", label: "オデッセイ"},{value: "25", label: "ステップワゴン"},{value: "26", label: "フリード"},
+      ];
+      
+      var HONDA_Sedan = [
+      {value: "", label: "▼HONDA"},
+      {value: "32", label: "クラリティ"},{value: "33", label: "レジェンド"},{value: "34", label: "アコード"},{value: "35", label: "インサイト"},
+      ];
+      
+       var HONDA_Sports = [
+      {value: "", label: "▼HONDA"},{value: "27", label: "NSX"},{value: "28", label: "シビック"},{value: "29", label: "CR-V"},{value: "30", label: "VEZEL"},]; 
+      
+      var HONDA_K = [
+      {value: "", label: "▼HONDA"},
+      {value: "31", label: "S660"},{value: "36", label: "N-ONE"},{value: "37", label: "N-BOX"},{value: "38", label: "N-WGN"},{value: "39", label: "N-VAN"},
+      ]; 
+      
+       var NISSAN = [
+      {value: "", label: "▼NISSAN"},
+      {value: "28", label: "オーラ"},{value: "29", label: "ノート"},{value: "30", label: "マーチ"},
+      {value: "31", label: "エルグランド"},{value: "32", label: "SERENA"},{value: "33", label: "キャラバン"},{value: "34", label: "パネット"},
+      {value: "35", label: "シーマ"},{value: "36", label: "フーガ"},{value: "37", label: "スカイライン"},{value: "38", label: "シルフィ"},
+      {value: "39", label: "フェアレディ"},{value: "40", label: "ルークス"},{value: "41", label: "デイズ"},
+     ];
+     
+     var NISSAN_Compact = [{value: "", label: "▼NISSAN"},{value: "28", label: "オーラ"},{value: "29", label: "ノート"},{value: "30", label: "マーチ"},];
+     
+     var NISSAN_Minivan = [
+      {value: "", label: "▼NISSAN"},
+      {value: "31", label: "エルグランド"},{value: "32", label: "SERENA"},{value: "33", label: "キャラバン"},{value: "34", label: "パネット"},
+     ];
+     
+     var NISSAN_Sedan = [
+      {value: "", label: "▼NISSAN"},
+      {value: "35", label: "シーマ"},{value: "36", label: "フーガ"},{value: "37", label: "スカイライン"},{value: "38", label: "シルフィ"},
+     ];
+     
+     var NISSAN_Sports = [{value: "", label: "▼NISSAN"},{value: "39", label: "フェアレディ"},];
+     
+     var NISSAN_K = [{value: "", label: "▼NISSAN"},{value: "40", label: "ルークス"},{value: "41", label: "デイズ"},];
+     
+     var MAZDA = [
+      {value: "", label: "▼MAZDA"},
+      {value: "42", label: "MAZDA2"},{value: "43", label: "CAROL"},
+      {value: "44", label: "----"},{value: "45", label: "MAZDA3"},{value: "46", label: "MAZDA6"},
+      {value: "47", label: "MAZDA_ROADSTAR"},{value: "48", label: "FLAIR"},{value: "49", label: "SCRAM-WAGON"},
+     ];
+     
+     var MAZDA_Compact = [{value: "", label: "▼MAZDA"},{value: "42", label: "MAZDA2"},{value: "43", label: "CAROL"},];
+     
+     var MAZDA_Minivan = [{value: "", label: "▼MAZDA"},{value: "44", label: "----"},];
+      
+     var MAZDA_Sedan = [{value: "", label: "▼MAZDA"},{value: "45", label: "MAZDA3"},{value: "46", label: "MAZDA6"},];
+      
+     var MAZDA_Sports = [{value: "", label: "▼MAZDA"},{value: "47", label: "MAZDA_ROADSTAR"},,]; 
+      
+     var MAZDA_K = [{value: "", label: "▼MAZDA"},{value: "48", label: "FLAIR"},{value: "49", label: "SCRAM-WAGON"},]; 
+     
+     var otherArr = [{value: "", label: "▼"}];
+    function setOption(radio) {
+    console.log(radio);
+     let radioValue = $("input[name='car[maker]']:checked").val();
+     // let radioValue = radio.value;
+     console.log(radioValue)
+     let maker_body = radioValue + event.currentTarget.value;
+      var target;
+      var pullObj;
+      var i;
+     if ((radio.value) == 'TOYOTA') {target = TOYOTA;} 
+     else if ((maker_body) == 'TOYOTAコンパクト') {target = TOYOTA_Compact;} 
+     else if ((maker_body) == 'TOYOTAミニバン') {target = TOYOTA_Minivan;} 
+     else if ((maker_body) == 'TOYOTAセダン') {target = TOYOTA_Sedan;}
+     else if ((maker_body) == 'TOYOTAスポーツ') {target = TOYOTA_Sports;}
+     else if ((maker_body) == 'TOYOTA軽自動車') {target = TOYOTA_K;}
+     else if ((radio.value) == 'HONDA') {target = HONDA;}
+     else if ((maker_body) == 'HONDAコンパクト') {target = HONDA_Compact;} 
+     else if ((maker_body) == 'HONDAミニバン') {target = HONDA_Minivan;} 
+     else if ((maker_body) == 'HONDAセダン') {target = HONDA_Sedan;} 
+     else if ((maker_body) == 'HONDAスポーツ') {target = HONDA_Sports;} 
+     else if ((maker_body) == 'HONDA軽自動車') {target = HONDA_K;} 
+     else if ((radio.value) == 'NISSAN') {target = NISSAN;} 
+     else if ((maker_body) == 'NISSANコンパクト') {target = NISSAN_Compact;} 
+     else if ((maker_body) == 'NISSANミニバン') {target = NISSAN_Minivan;} 
+     else if ((maker_body) == 'NISSANセダン') {target = NISSAN_Sedan;} 
+     else if ((maker_body) == 'NISSANスポーツ') {target = NISSAN_Sports;} 
+     else if ((maker_body) == 'NISSAN軽自動車') {target = NISSAN_K;} 
+     else if ((radio.value) == 'MAZDA') {target = MAZDA;} 
+     else if ((maker_body) == 'MAZDAコンパクト') {target = MAZDA_Compact;} 
+     else if ((maker_body) == 'MAZDAミニバン') {target = MAZDA_Minivan;} 
+     else if ((maker_body) == 'MAZDAセダン') {target = MAZDA_Sedan;} 
+     else if ((maker_body) == 'MAZDAスポーツ') {target = MAZDA_Sports;} 
+     else if ((maker_body) == 'MAZDA軽自動車') {target = MAZDA_K;}
+     pullObj = document.getElementById('boxB');
+     console.log(target)
+     console.log(maker_body)
+      while (pullObj.lastChild) {
+        pullObj.removeChild(pullObj.lastChild);
+      }
+      for (i = 0; i < target.length; i++) {
+        let option = document.createElement('option');
+        option.value = target[i].value;
+        option.text = target[i].label;
+        pullObj.appendChild(option);
+      }
+     }
+  </script>
+  <script>
+  $('#boxB option[data-id]').hide();
+  <% Car.body_types.keys.each do |cartype| %>
+   let radio_cartype_<%= cartype %> = $('#car_body_type_' + "<%= cartype.downcase %>");
+   radio_cartype_<%= cartype %>.change(inputChange);
+  <% end %>
+  function inputChange(event){
+   let radioValue = $("input[name='car[maker]']:checked").val();
+   if(radioValue){
+    let radio_maker = radioValue
+    let radio_body = event.currentTarget.value
+    let value = 0
+    if ((radio_maker == 'TOYOTA') && (radio_body == 'コンパクト')) {
+     value = 1;
+    } else if ((radio_maker == 'TOYOTA') && (radio_body == 'ミニバン')) {
+     value = 2;
+    } else if ((radio_maker == 'TOYOTA') && (radio_body == 'セダン')) {
+     value = 3;
+    } else if ((radio_maker == 'TOYOTA') && (radio_body == 'スポーツ')) {
+     value = 4;
+    } else if ((radio_maker == 'TOYOTA') && (radio_body == '軽自動車')) {
+     value = 5;
+     // Aが変更されるときに一度非表示にする
+     $('#boxB option[data-id]').hide();
+     // Aのvalueに対応するBのdata-idのoptionを表示する
+     $("#boxB option[data-id='"+ value +"']").show();
+   };
+   } else {
+      pullObj = document.getElementById('boxB');
+      let option = document.createElement('option');
+      // option.value = target[i].value;
+      option.text = "markerを選択してください";
+      pullObj.appendChild(option);
+   };
+  }
+  </script>
+
+<!--チェンジイベント　オンチェンジ-->
+<!--セレクトボタンの中身変更-->
+
+<!--1.オンチェンジでセレクトボタンの中身を変更する(静的)-->
+<!--2.serchを呼び出してレスポンスを動的にする-->
+
+<%#= javascript_include_tag "xxx.js" %>

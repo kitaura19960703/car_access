@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CarAccess</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container">
+          <a class="navbar-brand"><%= link_to "Car Access", root_path, class: "nav-link text-light" %></a>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <% if user_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li><%= link_to "About",home_about_path, class: "fas fa-link nav-link text-light" %></li>
+              <li><%= link_to "Users",users_path, class: "fas fa-users nav-link text-light" %></li>
+              <li><%= link_to "Cars",cars_path, class: "fas fa-car nav-link text-light" %></li>
+              <li><%= link_to "logout", destroy_user_session_path,class: "fas fa-sign-out-alt nav-link text-light", method: :delete %></li>
+            </ul>
+            <div class="search-form">
+              <%= form_with url: search_path, method: :get, local: true do |f| %>
+               <%= f.text_field :keyword, value: @keyword %>
+               <!--<%#= f.button :type => "submit", style: 'border-style: none;' do %><i class='fas fa-search btn btn-success'></i><%# end %>-->
+               <%= f.submit "検索" %>
+              <% end %>
+            </div>
+            <% else %>
+            <ul class="navbar-nav ml-auto">
+              <li><%#= link_to "Home",root_path, class: "fas fa-home nav-link text-light" %></li>
+              <li><%= link_to "About",home_about_path, class: "fas fa-link nav-link text-light" %></li>
+              <li><%= link_to "sign up",new_user_registration_path, class: "fas fa-user-plus nav-link text-light" %></li>
+              <li><%= link_to "login",user_session_path, class: "fas fa-sign-in-alt nav-link text-light" %></li>
+            </ul>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main><%= yield %></main>
+    <footer><div class="footer-text">Car<i class="fas fa-car"></i><strong>Access</div></footer>
+  </body>
+</html>

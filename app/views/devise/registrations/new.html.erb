@@ -1,0 +1,142 @@
+<div class='container'>
+ <div class='row'>
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <br></br>
+    <h2>Sign up</h2>
+    <%= form_with model: resource, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+  
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name, autofocus: true %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name, autofocus: true %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :first_name_kana %><br />
+      <%= f.text_field :first_name_kana, autofocus: true %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :last_name_kana %><br />
+      <%= f.text_field :last_name_kana, autofocus: true %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :age %><br />
+      <%= f.text_field :age, autofocus: true %>
+    </div>
+    
+    <div class="field">
+     <%= f.label :first_address %><br />
+     <%= f.select :first_address, User.addresses, {prompt: '選択してください'} %>
+    </div>
+    
+    <div class="field">
+     <%= f.label :last_address %><br />
+     <%= f.select :last_address, User.addresses, {prompt: '選択してください'} %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "Sign up" %>
+    </div>
+  <% end %>
+  
+  <%= render "devise/shared/links" %>
+  </div>
+ </div>
+</div>
+
+
+
+
+
+
+
+<!--
+<!--    <h2>Sign up<i class="fas fa-user-plus"></i></h2>-->
+<!--    <%#= form_with model: resource, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>-->
+<!--    <%#= render "devise/shared/error_messages", resource: resource %>-->
+<!--     <table>-->
+<!--      <tr>-->
+<!--       <th>名前</th>-->
+<!--       <td>(姓)<%#= f.text_field :firdt_name, autofocus: true, class: "form-control" %></td>-->
+<!--       <td>(名)<%#= f.text_field :last_name, autofocus: true, class: "form-control" %></td>-->
+<!--      </tr>-->
+<!--      <br>-->
+<!--      <tr>-->
+<!--       <th>フリガナ</th>-->
+<!--       <td>(セイ)<%#= f.text_field :first_name_kana, autofocus: true, class: "form-control" %></td>-->
+<!--       <td>(メイ)<%#= f.text_field :last_name_kana, autofocus: true, class: "form-control" %></td>-->
+<!--      </tr>-->
+<!--     </table>-->
+<!--     <br>-->
+<!--     <div>メールアドレス</div>-->
+<!--     <div><%#= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></div>-->
+<!--     <br>-->
+<!--     <div>パスワード</div>-->
+<!--     <div>-->
+<!--      <%# if @minimum_password_length %><em>(<%#= @minimum_password_length %> characters minimum)</em><%# end %><br />-->
+<!--      <%#= f.password_field :password, autocomplete: "new-password", class: "form-control" %>-->
+<!--     </div>-->
+<!--     <br>-->
+<!--     <div>パスワード<br>(確認用)</div>-->
+<!--     <div><%#= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></div>-->
+    <%#= f.submit "新規登録",class: "fas fa-user-cog btn btn-success" %>
+<!--    <div class="actions"><%#= f.button :type => "submit", style: 'border-style: none;' do %><i class='fas fa-user-plus btn btn-success'></i><%# end %></div>-->
+<!--   <%# end %>-->
+   <%#= render "devise/shared/links" %>
+<!--  
+
+<!--<div class='container'>-->
+<!-- <div class='row'>-->
+<!--  <div class="mx-auto">-->
+<!--    <br></br>-->
+<!--    <h2>Sign up<i class="fas fa-user-plus"></i></h2>-->
+<!--    <%#= form_with model: resource, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>-->
+<!--    <%#= render "devise/shared/error_messages", resource: resource %>-->
+<!--     <div>名前 (姓)<%#= f.text_field :firdt_name, autofocus: true %> (名)<%#= f.text_field :last_name, autofocus: true %></div>-->
+<!--     <br>-->
+<!--     <div>フリガナ (セイ)<%#= f.text_field :first_name_kana, autofocus: true %> (メイ)<%#= f.text_field :last_name_kana, autofocus: true %></div>-->
+<!--     <br>-->
+<!--     <div>メールアドレス <%#= f.email_field :email, size: 47, autofocus: true, autocomplete: "email" %></div>-->
+<!--     <br>-->
+<!--     <div>-->
+<!--      パスワード-->
+<!--      <%# if @minimum_password_length %><em>(<%#= @minimum_password_length %> characters minimum)</em><%# end %><br />-->
+<!--      <%#= f.password_field :password, autocomplete: "new-password" %>-->
+<!--     </div>-->
+<!--     <br>-->
+<!--     <div>パスワード<br>(確認用)</div>-->
+<!--     <div><%#= f.password_field :password_confirmation, autocomplete: "new-password" %></div>-->
+    <%#= f.submit "新規登録",class: "fas fa-user-cog btn btn-success" %>
+<!--    <div class="actions"><%#= f.button :type => "submit", style: 'border-style: none;' do %><i class='fas fa-user-plus btn btn-success'></i><%# end %></div>-->
+<!--   <%# end %>-->
+   <%#= render "devise/shared/links" %>
+<!--  </div>-->
+<!-- </div>-->
+<!--</div>-->
+
+<%#= form.text_field :name,  size: 30 %>

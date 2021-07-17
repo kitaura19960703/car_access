@@ -1,0 +1,28 @@
+<div class='container px-5 px-sm-0'>
+ <div class='row'>
+  <div class='col-md-8 offset-md-1'>
+   <br>
+   <h2>Users</h2>
+   <table class="table table-hover">
+    <thead>
+     <tr bgcolor="silver">
+      <th>ID</th>
+      <th>名前</th>
+      <th>年齢</th>
+      <th>status</th>
+     </tr>
+    </thead>
+    <tbody>
+     <% @users.each do |user| %>
+      <tr>
+       <td><%= user.id %></td>
+       <td><%= link_to user.first_name + user.last_name, user_path(user.id) %></td>
+       <td><%= user.age %></td>
+       <td><% if current_user == user %>my user<% else %>others<% end %></td>
+      </tr>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</div>
