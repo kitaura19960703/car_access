@@ -9,6 +9,8 @@ class CreateCars < ActiveRecord::Migration[5.2]
       t.integer :review
       t.string :car_name
       t.string :car_genre
+      t.string :other_maker
+      t.float :star
 
       t.timestamps
     end

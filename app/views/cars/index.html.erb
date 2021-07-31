@@ -2,7 +2,7 @@
  <div class='row'>
   <div class='col-md-8 offset-md-1'>
    <br>
-   <h2>Cars<%= link_to new_car_path do%><i class="fas fa-plus-circle ml-2"></i><% end %></h2>
+   <h2>車一覧<i class="fas fa-car"></i><%= link_to new_car_path do%><i class="fas fa-plus-circle ml-2"></i><% end %></h2>
    <table class="table table-hover">
     <thead>
      <tr bgcolor="silver">
@@ -10,15 +10,30 @@
       <th>名前</th>
       <th>ボディ</th>
       <th>メーカー</th>
+      <th>投稿者</th>
      </tr>
     </thead>
     <tbody>
-     <% @cars.each do |user| %>
+     <% @cars.each do |car| %>
       <tr>
        <td><%= car.id %></td>
-       <td><%= link_to car.car_name, car_path(car.id) %></td>
+       <td>
+        <% if car.maker == "other" %>
+          <%= link_to car.other_maker, car_path(car.id), class: "car_name", data: { car_id: car.car_name, maker_body: car.maker + car.body_type } %>
+        <% else %>
+          <%= link_to car.car_name, car_path(car.id), class: "car_name", data: { car_id: car.car_name, maker_body: car.maker + car.body_type } %>
+        <% end %>
+
+       </td>
        <td><%= car.body_type %></td>
        <td><%= car.maker %></td>
+       <td>
+        <% if current_user == car.user %>
+         <%= link_to car.user.first_name + car.user.last_name, user_path(car.user), class: 'text-success' %>
+        <% else %>
+         <%= link_to car.user.first_name + car.user.last_name, user_path(car.user), class: 'text-secondary' %>
+         <% end %>
+       </td>
       </tr>
      <% end %>
     </tbody>
@@ -26,3 +41,153 @@
   </div>
  </div>
 </div>
+
+<!--<script type="text/javascript">-->
+<!--     var TOYOTA = [-->
+<!--      {value: "", label: "▼TOYOTA"},-->
+<!--      {value: "1", label: "アクア"},{value: "2", label: "パッソ"},{value: "3", label: "ヤリス"},{value: "4", label: "ルーミー"},-->
+<!--      {value: "5", label: "アルファード"},{value: "6", label: "ヴェルファイア"},{value: "7", label: "ヴォクシー"},{value: "8", label: "エクスファイア"},-->
+<!--      {value: "9", label: "グランエース"},{value: "10", label: "シエンタ"},{value: "11", label: "ノア"},{value: "12", label: "ハイエース"},-->
+<!--      {value: "13", label: "カムリ"},{value: "14", label: "カローラ"},{value: "15", label: "クラウン"},-->
+<!--      {value: "16", label: "センチュリー"},{value: "17", label: "プリウス"},{value: "18", label: "MIRAI"},-->
+<!--      {value: "19", label: "スープラ"},{value: "20", label: "86"},{value: "21", label: "ピクシス"},-->
+<!--     ];-->
+     
+<!--     var TOYOTA_Compact = [-->
+<!--      {value: "", label: "▼TOYOTA"},-->
+<!--      {value: "1", label: "アクア"},{value: "2", label: "パッソ"},{value: "3", label: "ヤリス"},{value: "4", label: "ルーミー"},-->
+<!--     ];-->
+     
+<!--     var TOYOTA_Minivan = [-->
+<!--      {value: "", label: "▼TOYOTA"},-->
+<!--      {value: "5", label: "アルファード"},{value: "6", label: "ヴェルファイア"},{value: "7", label: "ヴォクシー"},{value: "8", label: "エクスファイア"},-->
+<!--      {value: "9", label: "グランエース"},{value: "10", label: "シエンタ"},{value: "11", label: "ノア"},{value: "12", label: "ハイエース"},-->
+<!--     ];-->
+     
+<!--     var TOYOTA_Sedan = [-->
+<!--      {value: "", label: "▼TOYOTA"},-->
+<!--      {value: "13", label: "カムリ"},{value: "14", label: "カローラ"},{value: "15", label: "クラウン"},-->
+<!--      {value: "16", label: "センチュリー"},{value: "17", label: "プリウス"},{value: "18", label: "MIRAI"},-->
+<!--     ];-->
+     
+<!--     var TOYOTA_Sports = [{value: "", label: "▼TOYOTA"},{value: "19", label: "スープラ"},{value: "20", label: "86"},];-->
+     
+<!--     var TOYOTA_K = [{value: "", label: "▼TOYOTA"},{value: "21", label: "ピクシス"},];-->
+     
+<!--     var HONDA = [-->
+<!--      {value: "", label: "▼HONDA"},-->
+<!--      {value: "22", label: "シャトル"},{value: "23", label: "フィット"},-->
+<!--      {value: "24", label: "オデッセイ"},{value: "25", label: "ステップワゴン"},{value: "26", label: "フリード"},-->
+<!--      {value: "27", label: "NSX"},{value: "28", label: "シビック"},{value: "29", label: "CR-V"},{value: "30", label: "VEZEL"},-->
+<!--      {value: "32", label: "クラリティ"},{value: "33", label: "レジェンド"},{value: "34", label: "アコード"},{value: "35", label: "インサイト"},-->
+<!--      {value: "31", label: "S660"},{value: "36", label: "N-ONE"},{value: "37", label: "N-BOX"},{value: "38", label: "N-WGN"},{value: "39", label: "N-VAN"},-->
+<!--     ];-->
+     
+<!--     var HONDA_Compact = [{value: "", label: "▼HONDA"},{value: "22", label: "シャトル"},{value: "23", label: "フィット"},];-->
+     
+<!--     var HONDA_Minivan = [-->
+<!--      {value: "", label: "▼HONDA"},{value: "24", label: "オデッセイ"},{value: "25", label: "ステップワゴン"},{value: "26", label: "フリード"},-->
+<!--      ];-->
+      
+<!--      var HONDA_Sedan = [-->
+<!--      {value: "", label: "▼HONDA"},-->
+<!--      {value: "32", label: "クラリティ"},{value: "33", label: "レジェンド"},{value: "34", label: "アコード"},{value: "35", label: "インサイト"},-->
+<!--      ];-->
+      
+<!--       var HONDA_Sports = [-->
+<!--      {value: "", label: "▼HONDA"},{value: "27", label: "NSX"},{value: "28", label: "シビック"},{value: "29", label: "CR-V"},{value: "30", label: "VEZEL"},]; -->
+      
+<!--      var HONDA_K = [-->
+<!--      {value: "", label: "▼HONDA"},-->
+<!--      {value: "31", label: "S660"},{value: "36", label: "N-ONE"},{value: "37", label: "N-BOX"},{value: "38", label: "N-WGN"},{value: "39", label: "N-VAN"},-->
+<!--      ]; -->
+      
+<!--       var NISSAN = [-->
+<!--      {value: "", label: "▼NISSAN"},-->
+<!--      {value: "28", label: "オーラ"},{value: "29", label: "ノート"},{value: "30", label: "マーチ"},-->
+<!--      {value: "31", label: "エルグランド"},{value: "32", label: "SERENA"},{value: "33", label: "キャラバン"},{value: "34", label: "パネット"},-->
+<!--      {value: "35", label: "シーマ"},{value: "36", label: "フーガ"},{value: "37", label: "スカイライン"},{value: "38", label: "シルフィ"},-->
+<!--      {value: "39", label: "フェアレディ"},{value: "40", label: "ルークス"},{value: "41", label: "デイズ"},-->
+<!--     ];-->
+     
+<!--     var NISSAN_Compact = [{value: "", label: "▼NISSAN"},{value: "28", label: "オーラ"},{value: "29", label: "ノート"},{value: "30", label: "マーチ"},];-->
+     
+<!--     var NISSAN_Minivan = [-->
+<!--      {value: "", label: "▼NISSAN"},-->
+<!--      {value: "31", label: "エルグランド"},{value: "32", label: "SERENA"},{value: "33", label: "キャラバン"},{value: "34", label: "パネット"},-->
+<!--     ];-->
+     
+<!--     var NISSAN_Sedan = [-->
+<!--      {value: "", label: "▼NISSAN"},-->
+<!--      {value: "35", label: "シーマ"},{value: "36", label: "フーガ"},{value: "37", label: "スカイライン"},{value: "38", label: "シルフィ"},-->
+<!--     ];-->
+     
+<!--     var NISSAN_Sports = [{value: "", label: "▼NISSAN"},{value: "39", label: "フェアレディ"},];-->
+     
+<!--     var NISSAN_K = [{value: "", label: "▼NISSAN"},{value: "40", label: "ルークス"},{value: "41", label: "デイズ"},];-->
+     
+<!--     var MAZDA = [-->
+<!--      {value: "", label: "▼MAZDA"},-->
+<!--      {value: "42", label: "MAZDA2"},{value: "43", label: "CAROL"},-->
+<!--      {value: "44", label: "----"},{value: "45", label: "MAZDA3"},{value: "46", label: "MAZDA6"},-->
+<!--      {value: "47", label: "MAZDA_ROADSTAR"},{value: "48", label: "FLAIR"},{value: "49", label: "SCRAM-WAGON"},-->
+<!--     ];-->
+     
+<!--     var MAZDA_Compact = [{value: "", label: "▼MAZDA"},{value: "42", label: "MAZDA2"},{value: "43", label: "CAROL"},];-->
+     
+<!--     var MAZDA_Minivan = [{value: "", label: "▼MAZDA"},{value: "44", label: "----"},];-->
+      
+<!--     var MAZDA_Sedan = [{value: "", label: "▼MAZDA"},{value: "45", label: "MAZDA3"},{value: "46", label: "MAZDA6"},];-->
+      
+<!--     var MAZDA_Sports = [{value: "", label: "▼MAZDA"},{value: "47", label: "MAZDA_ROADSTAR"},,]; -->
+      
+<!--     var MAZDA_K = [{value: "", label: "▼MAZDA"},{value: "48", label: "FLAIR"},{value: "49", label: "SCRAM-WAGON"},]; -->
+     
+<!--     var otherArr = [{value: "", label: "▼"}];-->
+   
+     
+<!--     $(function(){-->
+<!--      $(".car_name").each(function(i,o){-->
+<!--       const carId = $(this).data("car-id")-->
+<!--       const makerBody = $(this).data("maker-body")-->
+<!--       var target;-->
+
+<!--       if ((makerBody) == 'TOYOTA') {target = TOYOTA;} -->
+<!--       else if ((makerBody) == 'TOYOTAミニバン') {target = TOYOTA_Minivan;} -->
+<!--       else if ((makerBody) == 'TOYOTAセダン') {target = TOYOTA_Sedan;}-->
+<!--       else if ((makerBody) == 'TOYOTAスポーツ') {target = TOYOTA_Sports;}-->
+<!--       else if ((makerBody) == 'TOYOTAコンパクト') {target = TOYOTA_Compact;}-->
+<!--       else if ((makerBody) == 'TOYOTA軽自動車') {target = TOYOTA_K;}-->
+<!--       else if ((makerBody) == 'HONDA') {target = HONDA;}-->
+<!--       else if ((makerBody) == 'HONDAコンパクト') {target = HONDA_Compact;} -->
+<!--       else if ((makerBody) == 'HONDAミニバン') {target = HONDA_Minivan;} -->
+<!--       else if ((makerBody) == 'HONDAセダン') {target = HONDA_Sedan;} -->
+<!--       else if ((makerBody) == 'HONDAスポーツ') {target = HONDA_Sports;} -->
+<!--       else if ((makerBody) == 'HONDA軽自動車') {target = HONDA_K;} -->
+<!--       else if ((makerBody) == 'NISSAN') {target = NISSAN;} -->
+<!--       else if ((makerBody) == 'NISSANコンパクト') {target = NISSAN_Compact;} -->
+<!--       else if ((makerBody) == 'NISSANミニバン') {target = NISSAN_Minivan;} -->
+<!--       else if ((makerBody) == 'NISSANセダン') {target = NISSAN_Sedan;} -->
+<!--       else if ((makerBody) == 'NISSANスポーツ') {target = NISSAN_Sports;} -->
+<!--       else if ((makerBody) == 'NISSAN軽自動車') {target = NISSAN_K;} -->
+<!--       else if ((makerBody) == 'MAZDA') {target = MAZDA;} -->
+<!--       else if ((makerBody) == 'MAZDAコンパクト') {target = MAZDA_Compact;} -->
+<!--       else if ((makerBody) == 'MAZDAミニバン') {target = MAZDA_Minivan;} -->
+<!--       else if ((makerBody) == 'MAZDAセダン') {target = MAZDA_Sedan;} -->
+<!--       else if ((makerBody) == 'MAZDAスポーツ') {target = MAZDA_Sports;} -->
+<!--       else if ((makerBody) == 'MAZDA軽自動車') {target = MAZDA_K;}-->
+<!--       if (target && carId) {-->
+<!--         const item = target.find(item => {-->
+<!--          return item.value === String(carId)-->
+<!--         })-->
+
+<!--         $(this).text(item.label) -->
+<!--       }-->
+       
+       
+       
+       
+<!--       });-->
+<!--     });-->
+<!--  </script>-->
+  

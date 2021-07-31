@@ -1,31 +1,43 @@
 <div class='container'>
-  <div class='row'>
-   <div class="mx-auto">
-    <h2>New Car</h2>
-    <%= form_with model: @car, url:cars_path, method: :post, local:true, html:{name: 'car'} do |f| %>
-      <div class="d-flex justify-content-around">
-        <div><%= f.label :maker, 'メーカー' %></div>
-        <div><%= f.radio_button :maker, "TOYOTA", :onchange => "setOption(this);" %><%= f.label :maker, 'TOYOTA' %></div>
-        <div><%= f.radio_button :maker, "HONDA", :onchange => "setOption(this);" %><%= f.label :maker, "HONDA" %></div>
-        <div><%= f.radio_button :maker, "NISSAN", :onchange => "setOption(this);" %><%= f.label :maker, "NISSAN" %></div>
-        <div><%= f.radio_button :maker, "MAZDA", :onchange => "setOption(this);" %><%= f.label :maker, "MAZDA" %></div>
-        <div><%= f.radio_button :maker, 'other' %><%= f.label :maker, "その他", class: 'text-nowrap' %><%= f.text_field :other_maker, style: 'display:none'%></div>
-      </div>
-      <div class="d-flex justify-content-around">
-       <div><%= f.label :body_type, 'ボディタイプ' %></div>
-       <div><%= f.radio_button :body_type, "コンパクト", :onchange => "setOption(this);" %><%= f.label :body_type, 'コンパクト' %></div>
-       <div><%= f.radio_button :body_type, "ミニバン", :onchange => "setOption(this);" %><%= f.label :body_type, 'ミニバン' %></div>
-       <div><%= f.radio_button :body_type, "セダン", :onchange => "setOption(this);" %><%= f.label :body_type, 'セダン' %></div>
-       <div><%= f.radio_button :body_type, "スポーツ", :onchange => "setOption(this);" %><%= f.label :body_type, 'スポーツ' %></div>
-       <div><%= f.radio_button :body_type, "軽自動車", :onchange => "setOption(this);" %><%= f.label :body_type, '軽自動車' %></div>
-       <div><%= f.radio_button :body_type, 'other', :onchange => "setOption(this);" %><%= f.label :body_type, "その他" %><%= f.text_field :other_body_type, style: 'display:none'%></div>
-      </div>
-      <div>
-        <div><strong>名前</strong></div><select name="boxB" id="boxB"><option>選択してください</option></select><br>
-        <%= f.label :review, '説明' %><br><%= f.text_area :review, size: "80x5" %><br><%= f.submit '投稿',class: "btn btn-primary" %></div>
-      </div>
-    <% end %>
+ <div class='row'>
+  <div class="mx-auto">
+   <h1>新規投稿<i class="fas fa-car"></i></h1>
+   <%= form_with model: @car, url:cars_path, method: :post, local:true, html:{name: 'car'} do |f| %>
+    <div class="d-flex justify-content-around">
+     <div><%= f.label :maker, 'メーカー' %></div>
+     <div><%= f.radio_button :maker, "TOYOTA", :onchange => "setOption(this);" %><%= f.label :maker, 'TOYOTA' %></div>
+     <div><%= f.radio_button :maker, "HONDA", :onchange => "setOption(this);" %><%= f.label :maker, "HONDA" %></div>
+     <div><%= f.radio_button :maker, "NISSAN", :onchange => "setOption(this);" %><%= f.label :maker, "NISSAN" %></div>
+     <div><%= f.radio_button :maker, "MAZDA", :onchange => "setOption(this);" %><%= f.label :maker, "MAZDA" %></div>
+     <div><%= f.radio_button :maker, 'other' %><%= f.label :maker, "その他", class: 'text-nowrap' %><%= f.text_field :other_maker, style: 'display:none'%></div>
+    </div>
+    <div class="d-flex justify-content-around">
+     <div><%= f.label :body_type, 'ボディタイプ' %></div>
+     <div><%= f.radio_button :body_type, "コンパクト", :onchange => "setOption(this);" %><%= f.label :body_type, 'コンパクト' %></div>
+     <div><%= f.radio_button :body_type, "ミニバン", :onchange => "setOption(this);" %><%= f.label :body_type, 'ミニバン' %></div>
+     <div><%= f.radio_button :body_type, "セダン", :onchange => "setOption(this);" %><%= f.label :body_type, 'セダン' %></div>
+     <div><%= f.radio_button :body_type, "スポーツ", :onchange => "setOption(this);" %><%= f.label :body_type, 'スポーツ' %></div>
+     <div><%= f.radio_button :body_type, "軽自動車", :onchange => "setOption(this);" %><%= f.label :body_type, '軽自動車' %></div>
+     <div><%= f.radio_button :body_type, 'その他', :onchange => "setOption(this);" %><%= f.label :body_type, "その他" %><%#= f.text_field :other_body_type, style: 'display:none'%></div>
+    </div>
+    <div　class="d-flex justify-content-around">
+     <div><%= f.label :car_name, '名前' %><select name="car_name" id="boxB" class="w-50"><option>選択してください</option></select></div>
+     <div class="d-flex p-2">
+      <%= f.label :color, '色' %><%= f.text_field :color %><div id="evaluate_stars" class="ml-5"><label>評価</label></div>
+     </div>
+     <script>
+      $('#evaluate_stars').raty({
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'car[star]' //登録するモデル名とカラム名を記述
+      });
+     </script>
+     <div><%= f.label :review, '説明' %><br><%= f.text_area :review, size: "80x5" %><br><%= f.submit '投稿',class: "btn btn-primary" %></div>
+    </div>
+   <% end %>
   </div>
+ </div>
 </div>
 
     <script type="text/javascript">
@@ -169,9 +181,10 @@
       while (pullObj.lastChild) {
         pullObj.removeChild(pullObj.lastChild);
       }
-      for (i = 0; i < target.length; i++) {
+      for (i = 1; i < target.length; i++) {
         let option = document.createElement('option');
-        option.value = target[i].value;
+        //option.value = target[i].value;
+        option.value = target[i].label;
         option.text = target[i].label;
         pullObj.appendChild(option);
       }
@@ -208,7 +221,7 @@
       pullObj = document.getElementById('boxB');
       let option = document.createElement('option');
       // option.value = target[i].value;
-      option.text = "markerを選択してください";
+      option.text = "先にメーカーを選択してください";
       pullObj.appendChild(option);
    };
   }
@@ -221,3 +234,4 @@
 <!--2.serchを呼び出してレスポンスを動的にする-->
 
 <%#= javascript_include_tag "xxx.js" %>
+

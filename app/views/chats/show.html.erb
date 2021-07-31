@@ -1,0 +1,26 @@
+<div id="chats">
+    <h2 style="text-align:center"><%="#{@user.first_name + @user.last_name}さんとのDM"%></h2>
+  <% @chats.each do |chat|%>
+    <%if chat.user_id==current_user.id%>
+      <div class="mycomment">
+        <p><%=chat.message%></p>
+      </div>
+    <%else%>
+      <div class="fukidasi">
+        <div class="faceicon">
+        </div>
+        <div class="chatting">
+          <div class="says">
+            <p><%=chat.message%></p>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  <%end%>
+</div>
+<%= form_with model: @chat, id: "send-form" do |f| %>
+    <%= f.text_field :message,id: "sentence" %>
+    <%= f.hidden_field :room_id %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.submit "送信", id: "send" %>
+<% end %>

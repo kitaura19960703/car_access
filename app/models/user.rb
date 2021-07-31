@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :cars, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :user_rooms
+  has_many :chats
+  has_many :notifications
   validates :first_name, :last_name, :first_name_kana, :last_name_kana, :age, :first_address, :last_address, :email, presence: true
   enum address: {
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -15,4 +19,8 @@ class User < ApplicationRecord
     徳島県:36,香川県:37,愛媛県:38,高知県:39,
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
   }
+  
+  def active_for_authentication?
+    super && (is_active == true)
+  end
 end

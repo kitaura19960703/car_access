@@ -12,11 +12,24 @@ class UsersController < ApplicationController
   end
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user)
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render "edit"
+    end
   end
   def show
     @user = User.find(params[:id])
+    @cars = @user.cars
+  end
+  def out
+  end
+  def with_out
+    @user = current_user
+    @user.update(is_active: false)
+    # 退会機能もupdate
+    reset_session
+    redirect_to root_path
   end
   private
   def user_params

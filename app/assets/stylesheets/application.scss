@@ -25,15 +25,15 @@
 }
 
 .box0 {
-  width: 800px;
+  width: 480px;
   display: flex;
   flex-wrap: wrap;
   margin: 50px auto;
 }
 
 .aaa{
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 160px;
 }
 
 .box1 {
@@ -94,4 +94,8 @@ footer {
 color: white;
 padding-top: 50px;
 }
- 
+
+.body {
+  background-image: image-url("hoge.jpg");
+  
+}

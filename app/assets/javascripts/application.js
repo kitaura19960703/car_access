@@ -20,6 +20,7 @@
 //= require turbolinks
 //= require_tree .
 
+
 // ターボリンクスのロードを待つ
 document.addEventListener("turbolinks:load", function(){
     // メイカのそれぞれのデタに対してfunctionの処理を追加する
@@ -39,14 +40,26 @@ document.addEventListener("turbolinks:load", function(){
         })
     })
 });
-document.addEventListener("turbolinks:load", function(){
-    document.car["car[body_type]"].forEach(function(element){
-        element.addEventListener('click', function(){
-            if ( document.car["car[body_type]"][5].checked ) {
-                document.car["car[other_body_type]"].style.display = 'inline-block'
-            } else {
-                document.car["car[other_body_type]"].style.display = 'none'
-            }
-        })
-    })
-});
+// document.addEventListener("turbolinks:load", function(){
+//     document.car["car[body_type]"].forEach(function(element){
+//         element.addEventListener('click', function(){
+//             if ( document.car["car[body_type]"][5].checked ) {
+//                 document.car["car[other_body_type]"].style.display = 'inline-block'
+//             } else {
+//                 document.car["car[other_body_type]"].style.display = 'none'
+//             }
+//         })
+//     })
+// });
+// document.addEventListener("turbolinks:load", function(){
+//     document.car["car[maker]"].forEach(function(element){
+//         element.addEventListener('click', function(){
+//             // ボディタイプのチェックを外す
+//             document.car["car[body_type]"].forEach(function(bodyType){
+//                 if (bodyType.checked == true) {
+//                     bodyType.checked = false
+//                 }
+//             })
+//         })
+//     })
+// });
