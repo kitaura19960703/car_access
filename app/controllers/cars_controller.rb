@@ -8,11 +8,20 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user_id = current_user.id
-    if @car.car_name.nil?
+    # binding.pry
+    if @car.star.blank?
+      @car.star = 0
+    end
+    if @car.car_name.blank?
       @car.car_name = "その他"
     end
-    @car.save!
-    redirect_to cars_path, notice: '保存が成功しました'
+    # @car.save!
+    # redirect_to cars_path, notice: '保存が成功しました'
+    if @car.save
+      redirect_to cars_path, notice: '保存が成功しました'
+    else
+      render "new"
+    end
   end
   def show
     @car = Car.find(params[:id])

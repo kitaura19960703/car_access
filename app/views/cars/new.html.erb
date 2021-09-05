@@ -2,6 +2,15 @@
  <div class='row'>
   <div class="mx-auto">
    <h1>新規投稿<i class="fas fa-car"></i></h1>
+   <% if @car.errors.any? %>
+    <div class = "alert">
+      <ul>
+        <% @car.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
    <%= form_with model: @car, url:cars_path, method: :post, local:true, html:{name: 'car'} do |f| %>
     <div class="d-flex justify-content-around">
      <div><%= f.label :maker, 'メーカー' %></div>

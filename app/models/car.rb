@@ -9,9 +9,11 @@ class Car < ApplicationRecord
     def favorited_by?(user)
         favorites.where(user_id: user.id).exists?
     end
-    
+    validates :maker, presence: true
+    validates :body_type, presence: true
+    validates :car_name, presence: true
     validates :star, numericality: {
         less_than_or_equal_to: 5,
-        grater_than_or_equal_to: 0
+        greater_than_or_equal_to: 0
     }, presence: true
 end

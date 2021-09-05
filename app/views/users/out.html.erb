@@ -1,13 +1,13 @@
 <div class='container'>
  <div class='row'>
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-   <br></br>
+   <br /><br />
    <h4>本当に退会しますか？</h4>
-   <br></br>
+   <br /><br />
    <strong>
-    退会すると、会員登録情報や<br>これまでの購⼊履歴が閲覧できなくなります。<br>退会する場合は、「退会する」をクリックしてください。
+    退会すると、会員登録情報や<br />これまでの購⼊履歴が閲覧できなくなります。<br />退会する場合は、「退会する」をクリックしてください。
    </strong>
-   <br></br>
+   <br /><br />
     <%= link_to "退会しない" , user_path(current_user.id), class: "btn btn-primary" %>
     <%= link_to "退会する" , user_with_out_path, method: :patch, class: "btn btn-danger", data: { confirm: "【確認】アカウントを削除してもよろしいですか？" } %>
     <!--まずトップに飛ばす前にキャンセルに飛ばすトップに飛ばすのはコントローラーで指定する-->

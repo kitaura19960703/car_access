@@ -1,11 +1,11 @@
 <div class='container px-5 px-sm-0'>
  <div class='row'>
   <div class='col-md-8 offset-md-1'>
-   <br>
+   <br />
    <h2>車一覧<i class="fas fa-car"></i><%= link_to new_car_path do%><i class="fas fa-plus-circle ml-2"></i><% end %></h2>
    <table class="table table-hover">
     <thead>
-     <tr bgcolor="silver">
+     <tr class="table-secondary">
       <th>ID</th>
       <th>名前</th>
       <th>ボディ</th>
@@ -23,7 +23,6 @@
         <% else %>
           <%= link_to car.car_name, car_path(car.id), class: "car_name", data: { car_id: car.car_name, maker_body: car.maker + car.body_type } %>
         <% end %>
-
        </td>
        <td><%= car.body_type %></td>
        <td><%= car.maker %></td>
@@ -32,7 +31,7 @@
          <%= link_to car.user.first_name + car.user.last_name, user_path(car.user), class: 'text-success' %>
         <% else %>
          <%= link_to car.user.first_name + car.user.last_name, user_path(car.user), class: 'text-secondary' %>
-         <% end %>
+        <% end %>
        </td>
       </tr>
      <% end %>
